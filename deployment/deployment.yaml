@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ams
+  labels:
+    app: ams
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ams
+  template:
+    metadata:
+      labels:
+        app: ams
+    spec:
+      containers:
+      - name: ams
+        image: 322228980454.dkr.ecr.us-east-1.amazonaws.com/log-parser:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "50m"
+        ports:
+        - name: http
+          containerPort: 80
+          protocol: TCP
